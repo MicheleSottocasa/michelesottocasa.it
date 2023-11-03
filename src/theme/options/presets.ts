@@ -30,6 +30,12 @@ export const primaryPresets = [
     name: 'default',
     ...palette.primary,
   },
+  // MINE CYAN
+  {
+    name: 'MS',
+    main: '#6A8FCF',
+    contrastText: '#FFFFFF',
+  },
   // CYAN
   {
     name: 'cyan',

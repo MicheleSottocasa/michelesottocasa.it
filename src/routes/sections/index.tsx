@@ -4,11 +4,7 @@ import MainLayout from 'src/layouts/main';
 // config
 // import { PATH_AFTER_LOGIN } from 'src/config-global';
 //
-// import { mainRoutes, HomePage } from './main';
-import { authRoutes } from './auth';
-import { authDemoRoutes } from './auth-demo';
-import { dashboardRoutes } from './dashboard';
-import { componentsRoutes } from './components';
+import { mainRoutes, HomePage } from './main';
 
 // ----------------------------------------------------------------------
 
@@ -27,20 +23,13 @@ export default function Router() {
       path: '/',
       element: (
         <MainLayout>
-          <Navigate to="/auth/jwt/login?returnTo=%2Fdashboard" replace />
+          <HomePage />
         </MainLayout>
       ),
     },
 
-    // Auth routes
-    ...authRoutes,
-    ...authDemoRoutes,
-
-    // Dashboard routes
-    ...dashboardRoutes,
-
-    // Components routes
-    ...componentsRoutes,
+    // Main routes
+    ...mainRoutes,
 
     // No match 404
     { path: '*', element: <Navigate to="/404" replace /> },

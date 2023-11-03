@@ -14,6 +14,13 @@ const ROOTS = {
   DASHBOARD: '/dashboard',
 };
 
+export const pathsMine = {
+  home: '/',
+  aboutMe: '/#about-me',
+  background: '/#background',
+  projects: '/#projects',
+};
+
 // ----------------------------------------------------------------------
 
 export const paths = {
