@@ -34,4 +34,5 @@ export interface NavItemMobileProps extends ListItemButtonProps {
 export type NavProps = {
   offsetTop: boolean;
   data: NavItemProps[];
+  activeSection?: any;
 };

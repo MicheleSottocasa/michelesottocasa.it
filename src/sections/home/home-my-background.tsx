@@ -81,7 +81,6 @@ const WORKS = [
 export default function HomeMyBackground() {
   return (
     <Container
-      id="background"
       component={MotionViewport}
       sx={{
         py: { xs: 10, md: 15 },

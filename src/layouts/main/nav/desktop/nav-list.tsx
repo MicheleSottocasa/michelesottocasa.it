@@ -18,16 +18,17 @@ import { StyledSubheader, StyledMenu } from './styles';
 type NavListProps = {
   item: NavItemProps;
   offsetTop: boolean;
+  activeSection?: string;
 };
 
-export default function NavList({ item, offsetTop }: NavListProps) {
+export default function NavList({ item, offsetTop, activeSection }: NavListProps) {
   const pathname = usePathname();
 
   const nav = useBoolean();
 
   const { path, children } = item;
 
-  const active = useActiveLink(path, false);
+  const active = useActiveLink(path, false, activeSection, item);
 
   const externalLink = path.includes('http');
 

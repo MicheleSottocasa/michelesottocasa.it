@@ -25,11 +25,14 @@ export default function HomeView() {
   const { hash } = useLocation();
   let currentSection = hash.replace('#', '');
 
-  if (hash === '') currentSection = 'hero';
+  if (hash === '') currentSection = 'hero1';
 
-  console.log(currentSection);
+  // console.log(currentSection);
 
   const sectionCurrent = document.getElementById(currentSection);
+
+  // console.log(sectionCurrent);
+
   if (sectionCurrent) {
     sectionCurrent.scrollIntoView({ behavior: 'smooth' });
   }
@@ -37,7 +40,7 @@ export default function HomeView() {
   return (
     <>
       <ScrollProgress scrollYProgress={scrollYProgress} />
-      <div id="hero" />
+      <div id="hero1" />
       <HomeHero />
 
       <Box
@@ -46,28 +49,10 @@ export default function HomeView() {
           position: 'relative',
           bgcolor: 'background.default',
         }}
+        id="background"
+        className="section"
       >
         <HomeMyBackground />
-
-        {/* <HomeHugePackElements />
-
-        <Box sx={{ position: 'relative' }}>
-          <StyledPolygon />
-          <HomeForDesigner />
-          <StyledPolygon anchor="bottom" />
-        </Box>
-
-        <HomeDarkMode />
-
-        <HomeColorPresets />
-
-        <HomeCleanInterfaces />
-
-        <HomePricing />
-
-        <HomeLookingFor />
-
-        <HomeAdvertisement /> */}
       </Box>
     </>
   );

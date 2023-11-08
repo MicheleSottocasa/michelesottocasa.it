@@ -14,6 +14,7 @@ import { bgBlur } from 'src/theme/css';
 // components
 import Logo from 'src/components/logo';
 //
+import React, { useState, useEffect } from 'react';
 import { HEADER } from '../config-layout';
 import { navConfig } from './config-navigation';
 import NavMobile from './nav/mobile';
@@ -24,11 +25,36 @@ import { HeaderShadow } from '../_common';
 // ----------------------------------------------------------------------
 
 export default function Header() {
+  const [activeSection, setActiveSection] = useState<string>(''); // Stato per l'elemento visibile
+
   const theme = useTheme();
 
   const mdUp = useResponsive('up', 'md');
 
   const offsetTop = useOffSetTop(HEADER.H_DESKTOP);
+
+  const handleScroll = () => {
+    const sections = document.querySelectorAll('.section'); // Aggiungi la classe 'section' alle sezioni del tuo contenuto
+    let currentSection = '';
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 0 && rect.bottom >= 0) {
+        currentSection = section.id; // Imposta l'ID dell'elemento visibile
+      }
+    });
+
+    setActiveSection(currentSection);
+  };
+
+  // console.log('Active section: ', activeSection);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <AppBar>
@@ -67,7 +93,9 @@ export default function Header() {
 
           <Box sx={{ flexGrow: 1 }} />
 
-          {mdUp && <NavDesktop offsetTop={offsetTop} data={navConfig} />}
+          {mdUp && (
+            <NavDesktop offsetTop={offsetTop} data={navConfig} activeSection={activeSection} />
+          )}
 
           <Stack alignItems="center" direction={{ xs: 'row', md: 'row-reverse' }}>
             {/* 

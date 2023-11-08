@@ -1,14 +1,14 @@
 import { m, useScroll } from 'framer-motion';
 import { useEffect, useRef, useState, useCallback } from 'react';
 // @mui
-import { styled, alpha, useTheme } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 // routes
-import { paths, pathsMine } from 'src/routes/paths';
+import { pathsMine } from 'src/routes/paths';
 // hooks
 import { useResponsive } from 'src/hooks/use-responsive';
 // theme
@@ -105,12 +105,18 @@ const StyledPolygon = styled('div')<StyledPolygonProps>(
   })
 );
 
+// Autho update birthday
+function calculate_age(dob: Date) {
+  const diff_ms = Date.now() - dob.getTime();
+  const age_dt = new Date(diff_ms);
+
+  return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+
 // ----------------------------------------------------------------------
 
 export default function HomeHero() {
   const mdUp = useResponsive('up', 'md');
-
-  const theme = useTheme();
 
   const heroRef = useRef<HTMLDivElement | null>(null);
 
@@ -142,6 +148,8 @@ export default function HomeHero() {
 
   const renderDescription = (
     <Stack
+      id="hero"
+      className="section"
       alignItems="left"
       justifyContent="center"
       sx={{
@@ -170,7 +178,7 @@ export default function HomeHero() {
           sequence={[
             "I'm Michele Sottocasa",
             2000,
-            "I'm a 19 years old guy",
+            `I'm a ${calculate_age(new Date('2004-06-05'))} years old guy`,
             2000,
             "I'm a Junior Developer",
             2000,
