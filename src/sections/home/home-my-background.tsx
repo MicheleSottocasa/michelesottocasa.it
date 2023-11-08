@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { m } from 'framer-motion';
 // @mui
 import { alpha } from '@mui/material/styles';
@@ -5,13 +6,22 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineOppositeContent from '@mui/lab/TimelineOppositeContent';
+import TimelineDot from '@mui/lab/TimelineDot';
 import Typography from '@mui/material/Typography';
 // components
 import { MotionViewport, varFade } from 'src/components/animate';
+// custom icons
+import { CustomCompanyIcons } from 'src/assets/icons/';
 
 // ----------------------------------------------------------------------
 
-const CARDS = [
+const STUDIES = [
   {
     icon: ' /assets/images/about/Logo_UNIMI.svg',
     title: 'Università degli Studi di Milano',
@@ -39,6 +49,30 @@ const CARDS = [
     description: 'February 2020 - February 2021',
     width: 100,
     height: 100,
+  },
+];
+const WORKS = [
+  {
+    company: 'Bottinelli Informatica',
+    position: 'Software Developer',
+    start: 'Jun 2022',
+    end: 'Jun 2022',
+    duration: '1 month',
+    current: false,
+    location: 'Tavernerio, Lombardy, Italy',
+    locationType: 'On-site',
+    type: 'Stage',
+  },
+  {
+    company: 'ReLOG3P',
+    position: 'Junior Developer',
+    start: 'Jul 2022',
+    end: 'Nov 2023',
+    duration: '1 year 5 month',
+    current: false,
+    location: 'Remote',
+    locationType: '',
+    type: 'Part-time',
   },
 ];
 
@@ -78,7 +112,7 @@ export default function HomeMyBackground() {
           md: 'repeat(2, 1fr)',
         }}
       >
-        {CARDS.map((card, index) => (
+        {STUDIES.map((card, index) => (
           <m.div variants={varFade().inUp} key={card.title}>
             <Card
               sx={{
@@ -123,6 +157,96 @@ export default function HomeMyBackground() {
             </Card>
           </m.div>
         ))}
+      </Box>
+      <Stack
+        spacing={3}
+        sx={{
+          textAlign: 'center',
+          mb: { xs: 5, md: 10 },
+          mt: { xs: 5, md: 10 },
+        }}
+      >
+        <m.div variants={varFade().inDown}>
+          <Typography variant="h3">Work route</Typography>
+        </m.div>
+      </Stack>
+
+      <Box>
+        <Timeline position="alternate">
+          {WORKS.map((card, index) => (
+            <m.div variants={varFade().inUp} key={card.company}>
+              <TimelineItem>
+                <TimelineOppositeContent sx={{ m: 'auto 0' }} align="right" variant="body2">
+                  <Box
+                    color="text.secondary"
+                    sx={{
+                      ...(index === 0 && {
+                        display: 'none',
+                      }),
+                    }}
+                  >
+                    <Typography>
+                      {card.start} - {card.end}
+                    </Typography>
+                    <Typography>{card.duration}</Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      ...(index === 1 && {
+                        display: 'none',
+                      }),
+                    }}
+                  >
+                    <Typography variant="h6" component="span">
+                      {card.position}
+                    </Typography>
+                    <Typography>
+                      {card.company} - {card.type}
+                    </Typography>
+                    <Typography color="text.secondary">{card.location}</Typography>
+                  </Box>
+                </TimelineOppositeContent>
+                <TimelineSeparator>
+                  <TimelineConnector />
+                  <TimelineDot>
+                    <CustomCompanyIcons company={card.company} />
+                  </TimelineDot>
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent sx={{ py: '12px', px: 2 }}>
+                  <Box
+                    color="text.secondary"
+                    sx={{
+                      ...(index === 1 && {
+                        display: 'none',
+                      }),
+                    }}
+                  >
+                    <Typography>
+                      {card.start} - {card.end}
+                    </Typography>
+                    <Typography>{card.duration}</Typography>
+                  </Box>
+                  <Box
+                    sx={{
+                      ...(index === 0 && {
+                        display: 'none',
+                      }),
+                    }}
+                  >
+                    <Typography variant="h6" component="span">
+                      {card.position}
+                    </Typography>
+                    <Typography>
+                      {card.company} - {card.type}
+                    </Typography>
+                    <Typography color="text.secondary">{card.location}</Typography>
+                  </Box>
+                </TimelineContent>
+              </TimelineItem>
+            </m.div>
+          ))}
+        </Timeline>
       </Box>
     </Container>
   );
