@@ -2,7 +2,6 @@
 // export default CustomCompanyIcons; //Remove me after fixing this file
 
 import Fastfood from '@mui/icons-material/Fastfood';
-import { Box } from '@mui/material';
 
 export interface CustomCompanyIconsProps {
   company: string;

@@ -7,6 +7,9 @@ import ScrollProgress from 'src/components/scroll-progress';
 //
 import HomeHero from '../home-hero';
 import HomeMyBackground from '../home-my-background';
+import HomeAboutMe from '../home-about-me';
+import HomeSkills from '../home-skills';
+import HomeProjects from '../home-projects';
 
 // ----------------------------------------------------------------------
 
@@ -49,10 +52,13 @@ export default function HomeView() {
           position: 'relative',
           bgcolor: 'background.default',
         }}
-        id="background"
+        id="about-me"
         className="section"
       >
+        <HomeAboutMe />
         <HomeMyBackground />
+        <HomeSkills />
+        <HomeProjects />
       </Box>
     </>
   );

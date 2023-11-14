@@ -19,6 +19,7 @@ export const pathsMine = {
   aboutMe: '/#about-me',
   background: '/#background',
   projects: '/#projects',
+  skills: '/#skills'
 };
 
 // ----------------------------------------------------------------------
