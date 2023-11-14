@@ -9,7 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 // routes
-import { paths } from 'src/routes/paths';
+import { paths, pathsMine } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 // _mock
@@ -24,21 +24,15 @@ const LINKS = [
   {
     headline: 'Minimal',
     children: [
-      { name: 'About us', href: paths.about },
-      { name: 'Contact us', href: paths.contact },
-      { name: 'FAQs', href: paths.faqs },
-    ],
-  },
-  {
-    headline: 'Legal',
-    children: [
-      { name: 'Terms and Condition', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
+      { name: 'About me', href: pathsMine.aboutMe },
+      { name: 'My background', href: pathsMine.background },
+      { name: 'Skills', href: pathsMine.skills },
+      { name: 'Projects', href: pathsMine.projects },
     ],
   },
   {
     headline: 'Contact',
-    children: [{ name: 'support@minimals.cc', href: '#' }],
+    children: [{ name: 'contact@michelesottocasa.it', href: 'mailto:contact@michelesottocasa.it' }],
   },
 ];
 
@@ -62,7 +56,11 @@ export default function Footer() {
       <Container>
         <Logo sx={{ mb: 1, mx: 'auto' }} />
 
-        <Typography variant="caption" component="div">
+        <Typography variant="h6" component="div">
+          Living<br />learning<br />&<br />growing up<br />day by day
+        </Typography>
+
+        <Typography variant="caption" component="div" marginTop="15px">
           © All rights reserved
         </Typography>
       </Container>
@@ -97,14 +95,13 @@ export default function Footer() {
         >
           <Grid xs={8} md={3}>
             <Typography
-              variant="body2"
+              variant="h6"
               sx={{
-                maxWidth: 270,
-                mx: { xs: 'auto', md: 'unset' },
+                maxWidth: 100,
+                mx: { xs: 'auto', md: 'unset', textAlign: 'center' },
               }}
             >
-              The starting point for your next project with Minimal UI Kit, built on the newest
-              version of Material-UI ©, ready to be customized to your style.
+              Living<br />learning<br />&<br />growing up<br />day by day
             </Typography>
 
             <Stack
@@ -117,6 +114,8 @@ export default function Footer() {
             >
               {_socials.map((social) => (
                 <IconButton
+                  href={social.path}
+                  target="_blank"
                   key={social.name}
                   sx={{
                     '&:hover': {
@@ -160,12 +159,13 @@ export default function Footer() {
           </Grid>
         </Grid>
 
-        <Typography variant="body2" sx={{ mt: 10 }}>
-          © 2021. All rights reserved
+        <Typography variant="caption" sx={{ mt: 10 }}>
+          © All rights reserved
         </Typography>
       </Container>
     </Box>
   );
 
-  return isHome ? simpleFooter : mainFooter;
+  // return isHome ? simpleFooter : mainFooter;
+  return mainFooter;
 }

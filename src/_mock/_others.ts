@@ -122,28 +122,28 @@ export const _socials = [
     name: 'FaceBook',
     icon: 'eva:facebook-fill',
     color: '#1877F2',
-    path: 'https://www.facebook.com/caitlyn.kerluke',
+    path: 'https://www.facebook.com/michele.sottocasa004',
   },
   {
     value: 'instagram',
     name: 'Instagram',
     icon: 'ant-design:instagram-filled',
     color: '#E02D69',
-    path: 'https://www.instagram.com/caitlyn.kerluke',
+    path: 'https://www.instagram.com/sottocasa_michele/',
   },
   {
     value: 'linkedin',
     name: 'Linkedin',
     icon: 'eva:linkedin-fill',
     color: '#007EBB',
-    path: 'https://www.linkedin.com/caitlyn.kerluke',
+    path: 'https://www.linkedin.com/in/michele-sottocasa-4445861ab/',
   },
   {
     value: 'twitter',
     name: 'Twitter',
     icon: 'eva:twitter-fill',
     color: '#00AAEC',
-    path: 'https://www.twitter.com/caitlyn.kerluke',
+    path: 'https://twitter.com/miky_sottocasa',
   },
 ];
 
