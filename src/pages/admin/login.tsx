@@ -1,13 +1,17 @@
-import React from 'react';
+import { Helmet } from "react-helmet-async";
+// section
+import { LoginPageView } from "src/sections/admin/login";
 
-class HelloWorld extends React.Component {
-    render() {
-        return (
-            <div>
-                <h1>Hello World!</h1>
-            </div>
-        );
-    }
-}
 
-export default HelloWorld;
+
+export default function LoginPage() {
+    return (
+      <>
+        <Helmet>
+          <title> Login to admin</title>
+        </Helmet>
+  
+        <LoginPageView />
+      </>
+    );
+  }

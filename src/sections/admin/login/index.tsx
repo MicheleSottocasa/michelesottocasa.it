@@ -1,0 +1,1 @@
+export { default as LoginPageView } from './login-page-view';

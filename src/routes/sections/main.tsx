@@ -13,6 +13,7 @@ const Page403 = lazy(() => import('src/pages/403'));
 const Page404 = lazy(() => import('src/pages/404'));
 const ComingSoonPage = lazy(() => import('src/pages/coming-soon'));
 const MaintenancePage = lazy(() => import('src/pages/maintenance'));
+const LoginPage = lazy(() => import('src/pages/admin/login'));
 
 // ----------------------------------------------------------------------
 
@@ -33,48 +34,20 @@ export const mainRoutes = [
       { path: '403', element: <Page403 /> },
     ],
   },
-  // {
-  //   element: (
-  //     <MainLayout>
-  //       <Suspense fallback={<SplashScreen />}>
-  //         <Outlet />
-  //       </Suspense>
-  //     </MainLayout>
-  //   ),
-  //   children: [
-  //     { path: 'about-us', element: <AboutPage /> },
-  //     { path: 'contact-us', element: <ContactPage /> },
-  //     { path: 'faqs', element: <FaqsPage /> },
-  //     {
-  //       path: 'product',
-  //       children: [
-  //         { element: <ProductListPage />, index: true },
-  //         { path: 'list', element: <ProductListPage /> },
-  //         { path: ':id', element: <ProductDetailsPage /> },
-  //         { path: 'checkout', element: <ProductCheckoutPage /> },
-  //       ],
-  //     },
-  //     {
-  //       path: 'post',
-  //       children: [
-  //         { element: <PostListPage />, index: true },
-  //         { path: 'list', element: <PostListPage /> },
-  //         { path: ':title', element: <PostDetailsPage /> },
-  //       ],
-  //     },
-  //   ],
-  // },
-  // {
-  //   element: (
-  //     <SimpleLayout>
-  //       <Suspense fallback={<SplashScreen />}>
-  //         <Outlet />
-  //       </Suspense>
-  //     </SimpleLayout>
-  //   ),
-  //   children: [
-  //     { path: 'pricing', element: <PricingPage /> },
-  //     { path: 'payment', element: <PaymentPage /> },
-  //   ],
-  // },
+  {
+    path: '/',
+    element: (
+      <Suspense fallback={<SplashScreen />}>
+        <HomePage />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/admin/login',
+    element: (
+      <Suspense fallback={<SplashScreen />}>
+        <LoginPage />
+      </Suspense>
+    ),
+  }
 ];

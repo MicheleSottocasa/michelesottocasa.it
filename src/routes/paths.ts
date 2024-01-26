@@ -15,9 +15,10 @@ export const paths = {
   page404: '/404',
   page500: '/500',
   components: '/components',
-  // ADMIN DASHBOARD
-  admin: {
-    root: '/admin',
-    login: '/admin/login',
-  }
 };
+
+// ----------------------------------------------------------------------
+export const adminPaths = {
+  root: '/admin',
+  login: '/admin/login',
+}

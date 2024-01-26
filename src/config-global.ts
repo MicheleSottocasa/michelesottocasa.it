@@ -1,5 +1,5 @@
 // routes
-import { paths } from 'src/routes/paths';
+import { adminPaths, paths } from 'src/routes/paths';
 
 // API
 // ----------------------------------------------------------------------
@@ -32,4 +32,4 @@ export const AUTH0_API = {
 export const MAPBOX_API = process.env.REACT_APP_MAPBOX_API;
 
 // ROOT PATH AFTER LOGIN SUCCESSFUL
-export const PATH_AFTER_LOGIN = paths.admin.root; // as '/admin'
+export const PATH_AFTER_LOGIN = adminPaths.root; // as '/admin'
