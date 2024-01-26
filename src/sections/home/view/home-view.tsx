@@ -8,7 +8,7 @@ import ScrollProgress from 'src/components/scroll-progress';
 import HomeHero from '../home-hero';
 import HomeMyBackground from '../home-my-background';
 import HomeAboutMe from '../home-about-me';
-import HomeSkills from '../home-skills';
+// import HomeSkills from '../home-skills';
 import HomeProjects from '../home-projects';
 
 // ----------------------------------------------------------------------
@@ -57,8 +57,8 @@ export default function HomeView() {
       >
         <HomeAboutMe />
         <HomeMyBackground />
-        <HomeSkills />
         <HomeProjects />
+        {/* <HomeSkills /> */}
       </Box>
     </>
   );

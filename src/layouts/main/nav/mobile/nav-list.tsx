@@ -33,7 +33,6 @@ export default function NavList({ item }: NavListProps) {
         item={item}
         open={nav.value}
         onClick={nav.onToggle}
-        active={pathname === path}
         externalLink={externalLink}
       />
 

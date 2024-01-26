@@ -22,7 +22,7 @@ import Iconify from 'src/components/iconify';
 
 const LINKS = [
   {
-    headline: 'Minimal',
+    headline: 'About',
     children: [
       { name: 'About me', href: pathsMine.aboutMe },
       { name: 'My background', href: pathsMine.background },

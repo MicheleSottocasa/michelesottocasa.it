@@ -16,10 +16,10 @@ export const navConfig = [
     title: 'Background',
     path: pathsMine.background,
   },
-  {
-    title: 'Skills',
-    path: pathsMine.skills,
-  },
+  // {
+  //   title: 'Skills',
+  //   path: pathsMine.skills,
+  // },
   {
     title: 'Projects',
     path: pathsMine.projects,
