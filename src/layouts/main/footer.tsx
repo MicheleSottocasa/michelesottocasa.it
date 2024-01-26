@@ -9,8 +9,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 // routes
-import { paths, pathsMine } from 'src/routes/paths';
-import { usePathname } from 'src/routes/hooks';
+import { pathsMine } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 // _mock
 import { _socials } from 'src/_mock';
@@ -39,34 +38,6 @@ const LINKS = [
 // ----------------------------------------------------------------------
 
 export default function Footer() {
-  const pathname = usePathname();
-
-  const isHome = pathname === '/';
-
-  const simpleFooter = (
-    <Box
-      component="footer"
-      sx={{
-        py: 5,
-        textAlign: 'center',
-        position: 'relative',
-        bgcolor: 'background.default',
-      }}
-    >
-      <Container>
-        <Logo sx={{ mb: 1, mx: 'auto' }} />
-
-        <Typography variant="h6" component="div">
-          Living<br />learning<br />&<br />growing up<br />day by day
-        </Typography>
-
-        <Typography variant="caption" component="div" marginTop="15px">
-          © All rights reserved
-        </Typography>
-      </Container>
-    </Box>
-  );
-
   const mainFooter = (
     <Box
       component="footer"
