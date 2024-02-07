@@ -33,8 +33,12 @@ export const primaryPresets = [
   // MINE CYAN
   {
     name: 'MS',
+    lighter: '#CCF4FE',
+    light: '#68CDF9',
     main: '#6A8FCF',
-    contrastText: '#FFFFFF',
+    dark: '#0351AB',
+    darker: '#012972',
+    contrastText: '#FFFFFF', 
   },
   // CYAN
   {
