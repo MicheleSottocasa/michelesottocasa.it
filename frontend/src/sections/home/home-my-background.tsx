@@ -74,6 +74,17 @@ const WORKS = [
     locationType: '',
     type: 'Part-time',
   },
+  {
+    company: 'FiveElementsLabs',
+    position: 'Junior Developer',
+    start: 'Jan 2022',
+    end: 'Now',
+    duration: null,
+    current: true,
+    location: 'Milan, Lombardy, Italy',
+    locationType: 'Ibrid',
+    type: 'Part-time',
+  },
 ];
 
 // ----------------------------------------------------------------------
@@ -122,18 +133,20 @@ export default function HomeMyBackground() {
                 p: (theme) => theme.spacing(10, 5),
                 ...(index === 1 && {
                   boxShadow: (theme) => ({
-                    md: `-40px 40px 80px ${theme.palette.mode === 'light'
-                      ? alpha(theme.palette.grey[500], 0.16)
-                      : alpha(theme.palette.common.black, 0.4)
-                      }`,
+                    md: `-40px 40px 80px ${
+                      theme.palette.mode === 'light'
+                        ? alpha(theme.palette.grey[500], 0.16)
+                        : alpha(theme.palette.common.black, 0.4)
+                    }`,
                   }),
                 }),
                 ...(index === 2 && {
                   boxShadow: (theme) => ({
-                    md: `40px -40px 80px ${theme.palette.mode === 'light'
-                      ? alpha(theme.palette.grey[500], 0.16)
-                      : alpha(theme.palette.common.black, 0.4)
-                      }`,
+                    md: `40px -40px 80px ${
+                      theme.palette.mode === 'light'
+                        ? alpha(theme.palette.grey[500], 0.16)
+                        : alpha(theme.palette.common.black, 0.4)
+                    }`,
                   }),
                 }),
                 bgcolor: 'background.default',
