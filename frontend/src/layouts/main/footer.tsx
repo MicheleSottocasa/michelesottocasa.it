@@ -25,7 +25,6 @@ const LINKS = [
     children: [
       { name: 'About me', href: pathsMine.aboutMe },
       { name: 'My background', href: pathsMine.background },
-      { name: 'Skills', href: pathsMine.skills },
       { name: 'Projects', href: pathsMine.projects },
     ],
   },
@@ -72,7 +71,13 @@ export default function Footer() {
                 mx: { xs: 'auto', md: 'unset', textAlign: 'center' },
               }}
             >
-              Living<br />learning<br />&<br />growing up<br />day by day
+              Living
+              <br />
+              learning
+              <br />&<br />
+              growing up
+              <br />
+              day by day
             </Typography>
 
             <Stack

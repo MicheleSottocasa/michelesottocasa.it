@@ -4,7 +4,6 @@ export const pathsMine = {
   aboutMe: '/#about-me',
   background: '/#background',
   projects: '/#projects',
-  skills: '/#skills'
 };
 
 // ----------------------------------------------------------------------
@@ -21,4 +20,4 @@ export const paths = {
 export const adminPaths = {
   root: '/admin',
   login: '/admin/login',
-}
+};

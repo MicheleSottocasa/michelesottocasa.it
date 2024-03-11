@@ -17,10 +17,6 @@ export const navConfig = [
     path: pathsMine.background,
   },
   {
-    title: 'Skills',
-    path: pathsMine.skills,
-  },
-  {
     title: 'Projects',
     path: pathsMine.projects,
   },
@@ -34,5 +30,4 @@ export const navConfigAdmin = [
     title: 'Login to admin',
     path: adminPaths.login,
   },
-
 ];
