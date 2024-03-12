@@ -76,10 +76,10 @@ const WORKS = [
   },
   {
     company: 'FiveElementsLabs',
-    position: 'Junior Developer',
+    position: 'Frontend Web3 Developer',
     start: 'Jan 2022',
     end: 'Now',
-    duration: null,
+    duration: distanceBetweenTwoDate('Jen 2024', new Date()),
     current: true,
     location: 'Milan, Lombardy, Italy',
     locationType: 'Ibrid',
@@ -131,7 +131,7 @@ export default function HomeMyBackground() {
                 textAlign: 'center',
                 boxShadow: { md: 'none' },
                 p: (theme) => theme.spacing(10, 5),
-                ...(index === 1 && {
+                ...(index % 2 === 1 && {
                   boxShadow: (theme) => ({
                     md: `-40px 40px 80px ${
                       theme.palette.mode === 'light'
@@ -140,7 +140,7 @@ export default function HomeMyBackground() {
                     }`,
                   }),
                 }),
-                ...(index === 2 && {
+                ...(index % 2 === 2 && {
                   boxShadow: (theme) => ({
                     md: `40px -40px 80px ${
                       theme.palette.mode === 'light'
@@ -192,7 +192,7 @@ export default function HomeMyBackground() {
                   <Box
                     color="text.secondary"
                     sx={{
-                      ...(index === 0 && {
+                      ...(index % 2 === 0 && {
                         display: 'none',
                       }),
                     }}
@@ -204,7 +204,7 @@ export default function HomeMyBackground() {
                   </Box>
                   <Box
                     sx={{
-                      ...(index === 1 && {
+                      ...(index % 2 === 1 && {
                         display: 'none',
                       }),
                     }}
@@ -229,7 +229,7 @@ export default function HomeMyBackground() {
                   <Box
                     color="text.secondary"
                     sx={{
-                      ...(index === 1 && {
+                      ...(index % 2 === 1 && {
                         display: 'none',
                       }),
                     }}
@@ -241,7 +241,7 @@ export default function HomeMyBackground() {
                   </Box>
                   <Box
                     sx={{
-                      ...(index === 0 && {
+                      ...(index % 2 === 0 && {
                         display: 'none',
                       }),
                     }}
@@ -262,4 +262,21 @@ export default function HomeMyBackground() {
       </Box>
     </Container>
   );
+}
+
+function distanceBetweenTwoDate(firstDate: Date | string, secondDate: Date | string) {
+  firstDate = new Date(firstDate);
+  secondDate = new Date(secondDate);
+
+  let yearsDiff = secondDate.getFullYear() - firstDate.getFullYear();
+  let monthsDiff = secondDate.getMonth() - firstDate.getMonth();
+
+  if (monthsDiff < 0) {
+    yearsDiff -= 1;
+    monthsDiff += 12;
+  }
+
+  if (secondDate.getFullYear === new Date().getFullYear) yearsDiff -= 1;
+
+  return yearsDiff > 0 ? `${yearsDiff} years ${monthsDiff} months` : `${monthsDiff} months`;
 }
