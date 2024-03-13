@@ -57,7 +57,6 @@ const WORKS = [
     position: 'Software Developer',
     start: 'Jun 2022',
     end: 'Jun 2022',
-    duration: '1 month',
     current: false,
     location: 'Tavernerio, Lombardy, Italy',
     locationType: 'On-site',
@@ -68,7 +67,6 @@ const WORKS = [
     position: 'Junior Developer',
     start: 'Jul 2022',
     end: 'Nov 2023',
-    duration: '1 year 5 month',
     current: false,
     location: 'Remote',
     locationType: '',
@@ -76,10 +74,9 @@ const WORKS = [
   },
   {
     company: 'FiveElementsLabs',
-    position: 'Junior Developer',
-    start: 'Jan 2022',
+    position: 'Frontend Web3 Developer',
+    start: 'Jan 2023',
     end: 'Now',
-    duration: null,
     current: true,
     location: 'Milan, Lombardy, Italy',
     locationType: 'Ibrid',
@@ -131,7 +128,7 @@ export default function HomeMyBackground() {
                 textAlign: 'center',
                 boxShadow: { md: 'none' },
                 p: (theme) => theme.spacing(10, 5),
-                ...(index === 1 && {
+                ...(index % 2 === 1 && {
                   boxShadow: (theme) => ({
                     md: `-40px 40px 80px ${
                       theme.palette.mode === 'light'
@@ -140,7 +137,7 @@ export default function HomeMyBackground() {
                     }`,
                   }),
                 }),
-                ...(index === 2 && {
+                ...(index % 2 === 2 && {
                   boxShadow: (theme) => ({
                     md: `40px -40px 80px ${
                       theme.palette.mode === 'light'
@@ -192,19 +189,24 @@ export default function HomeMyBackground() {
                   <Box
                     color="text.secondary"
                     sx={{
-                      ...(index === 0 && {
+                      ...(index % 2 === 0 && {
                         display: 'none',
                       }),
                     }}
                   >
                     <Typography>
-                      {card.start} - {card.end}
+                      {card.start} {card.start !== card.end ? `- ${card.end}` : ''}
                     </Typography>
-                    <Typography>{card.duration}</Typography>
+                    <Typography>
+                      {distanceBetweenTwoDate(
+                        card.start,
+                        card.current === true ? new Date() : card.end
+                      )}
+                    </Typography>
                   </Box>
                   <Box
                     sx={{
-                      ...(index === 1 && {
+                      ...(index % 2 === 1 && {
                         display: 'none',
                       }),
                     }}
@@ -229,19 +231,24 @@ export default function HomeMyBackground() {
                   <Box
                     color="text.secondary"
                     sx={{
-                      ...(index === 1 && {
+                      ...(index % 2 === 1 && {
                         display: 'none',
                       }),
                     }}
                   >
                     <Typography>
-                      {card.start} - {card.end}
+                      {card.start} {card.start !== card.end ? `- ${card.end}` : ''}
                     </Typography>
-                    <Typography>{card.duration}</Typography>
+                    <Typography>
+                      {distanceBetweenTwoDate(
+                        card.start,
+                        card.current === true ? new Date() : card.end
+                      )}
+                    </Typography>
                   </Box>
                   <Box
                     sx={{
-                      ...(index === 0 && {
+                      ...(index % 2 === 0 && {
                         display: 'none',
                       }),
                     }}
@@ -262,4 +269,21 @@ export default function HomeMyBackground() {
       </Box>
     </Container>
   );
+}
+
+function distanceBetweenTwoDate(firstDate: Date | string, secondDate: Date | string) {
+  firstDate = new Date(firstDate);
+  secondDate = new Date(secondDate);
+
+  let yearsDiff = secondDate.getFullYear() - firstDate.getFullYear();
+  let monthsDiff = secondDate.getMonth() - firstDate.getMonth() + 1;
+  if (monthsDiff < 0) {
+    console.log('here');
+    yearsDiff -= 1;
+    monthsDiff += 12;
+  }
+
+  if (secondDate.getFullYear() === new Date().getFullYear()) yearsDiff -= 1;
+
+  return yearsDiff > 0 ? `${yearsDiff} years ${monthsDiff} months` : `${monthsDiff} months`;
 }
