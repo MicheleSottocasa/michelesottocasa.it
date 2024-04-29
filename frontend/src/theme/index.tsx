@@ -1,10 +1,10 @@
+'use client';
+
 import merge from 'lodash/merge';
 import { useMemo } from 'react';
 // @mui
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider as MuiThemeProvider, ThemeOptions } from '@mui/material/styles';
-// locales
-import { useLocales } from 'src/locales';
 // components
 import { useSettingsContext } from 'src/components/settings';
 // system
@@ -18,6 +18,8 @@ import { presets } from './options/presets';
 import { darkMode } from './options/dark-mode';
 import { contrast } from './options/contrast';
 import RTL, { direction } from './options/right-to-left';
+//
+import NextAppDirEmotionCacheProvider from './next-emotion-cache';
 
 // ----------------------------------------------------------------------
 
@@ -26,8 +28,6 @@ type Props = {
 };
 
 export default function ThemeProvider({ children }: Props) {
-  const { currentLang } = useLocales();
-
   const settings = useSettingsContext();
 
   const darkModeOption = darkMode(settings.themeMode);
@@ -70,17 +70,14 @@ export default function ThemeProvider({ children }: Props) {
 
   theme.components = merge(componentsOverrides(theme), contrastOption.components);
 
-  const themeWithLocale = useMemo(
-    () => createTheme(theme, currentLang.systemValue),
-    [currentLang.systemValue, theme]
-  );
-
   return (
-    <MuiThemeProvider theme={themeWithLocale}>
-      <RTL themeDirection={settings.themeDirection}>
-        <CssBaseline />
-        {children}
-      </RTL>
-    </MuiThemeProvider>
+    <NextAppDirEmotionCacheProvider options={{ key: 'css' }}>
+      <MuiThemeProvider theme={theme}>
+        <RTL themeDirection={settings.themeDirection}>
+          <CssBaseline />
+          {children}
+        </RTL>
+      </MuiThemeProvider>
+    </NextAppDirEmotionCacheProvider>
   );
 }

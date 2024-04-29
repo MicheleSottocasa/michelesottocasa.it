@@ -1,23 +1,20 @@
 // ----------------------------------------------------------------------
-export const pathsMine = {
-  home: '/',
-  aboutMe: '/#about-me',
-  background: '/#background',
-  projects: '/#projects',
+
+const ROOTS = {
+  HOME: "/",
 };
 
 // ----------------------------------------------------------------------
+
 export const paths = {
-  comingSoon: '/coming-soon',
-  maintenance: '/maintenance',
-  page403: '/403',
-  page404: '/404',
-  page500: '/500',
-  components: '/components',
+  underlabs: "https://underlabs.it",
+  root: ROOTS.HOME,
 };
 
-// ----------------------------------------------------------------------
-export const adminPaths = {
-  root: '/admin',
-  login: '/admin/login',
+export const pathsMine = {
+  home: "/",
+  aboutMe: "/#about-me",
+  background: "/#background",
+  projects: "/#projects",
+  blog: "/blog",
 };

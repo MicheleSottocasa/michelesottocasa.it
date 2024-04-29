@@ -1,7 +1,5 @@
-import { isSet } from 'lodash';
-import { useLocation, matchPath } from 'react-router-dom';
-
-// ----------------------------------------------------------------------
+import { isSet } from "lodash";
+import { useRouter } from "next/dist/client/components/navigation";
 
 type ReturnType = boolean;
 
@@ -9,33 +7,28 @@ export function useActiveLink(
   path: string,
   deep = true,
   activeSection?: string,
-  item = { path: '/#hero', title: 'Home' }
+  item = { path: "/#hero", title: "Home" }
 ): ReturnType {
-  const { pathname, hash } = useLocation();
-  let itemPath = item.path;
-  if (activeSection === '') activeSection = 'hero';
-  if (itemPath === '/') itemPath = '/#hero';
+  const router = useRouter();
 
-  // console.log(
-  //   'ActSect: ',
-  //   `/#${activeSection}`,
-  //   ' Item: ',
-  //   itemPath,
-  //   ' Result: ',
-  //   `/#${activeSection}` === itemPath
-  // );
+  let itemPath = item.path;
+  if (activeSection === "") activeSection = "hero";
+  if (itemPath === "/") itemPath = "/#hero";
 
   if (`/#${activeSection}` === itemPath) {
     return true;
   }
 
   if (isSet(activeSection)) {
-    // const normalActive = path ? !!matchPath({ path, end: true }, pathname) : false;
-    const normalActive = path ? !!matchPath({ path, end: true }, pathname + hash) : false;
+    const hash = window.location.hash;
 
-    const deepActive = path ? !!matchPath({ path, end: false }, pathname) : false;
+    const currentPath = window.location.pathname + (hash || "");
+
+    const normalActive = path ? !!router.pathname.startsWith(path) : false;
+    const deepActive = path ? !!currentPath.startsWith(path) : false;
 
     return deep ? deepActive : normalActive;
   }
+
   return false;
 }

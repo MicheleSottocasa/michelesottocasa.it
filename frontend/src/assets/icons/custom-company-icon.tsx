@@ -1,7 +1,4 @@
-// const CustomCompanyIcons = () => 'Remove me after fixing this file'; //Remove me after fixing this file
-// export default CustomCompanyIcons; //Remove me after fixing this file
-
-import Fastfood from '@mui/icons-material/Fastfood';
+import PlanFreeIcon from "./plan-free-icon";
 
 export interface CustomCompanyIconsProps {
   company: string;
@@ -9,7 +6,7 @@ export interface CustomCompanyIconsProps {
 
 function CustomCompanyIcons({ company }: CustomCompanyIconsProps) {
   switch (company) {
-    case 'Bottinelli Informatica':
+    case "Bottinelli Informatica":
       return (
         <svg
           height="35"
@@ -171,7 +168,7 @@ function CustomCompanyIcons({ company }: CustomCompanyIconsProps) {
           />
         </svg>
       );
-    case 'ReLOG3P':
+    case "ReLOG3P":
       return (
         <svg
           width="35"
@@ -311,15 +308,35 @@ function CustomCompanyIcons({ company }: CustomCompanyIconsProps) {
             transform="translate(-1141.98 -753.23)"
             fill="#4cb851"
           />
-          <path d="M2260,1349.68" transform="translate(-1141.98 -753.23)" fill="#fff" />
-          <path d="M2260,1349.68" transform="translate(-1141.98 -753.23)" fill="#fff" />
-          <path d="M2260,1349.68" transform="translate(-1141.98 -753.23)" fill="#fff" />
-          <path d="M881.29,982" transform="translate(-1141.98 -753.23)" fill="#fff" />
+          <path
+            d="M2260,1349.68"
+            transform="translate(-1141.98 -753.23)"
+            fill="#fff"
+          />
+          <path
+            d="M2260,1349.68"
+            transform="translate(-1141.98 -753.23)"
+            fill="#fff"
+          />
+          <path
+            d="M2260,1349.68"
+            transform="translate(-1141.98 -753.23)"
+            fill="#fff"
+          />
+          <path
+            d="M881.29,982"
+            transform="translate(-1141.98 -753.23)"
+            fill="#fff"
+          />
           <line x1="239.22" y1="139.57" x2="344.55" y2="139.57" fill="#fff" />
-          <path d="M1386.82,893.32" transform="translate(-1141.98 -753.23)" fill="#fff" />
+          <path
+            d="M1386.82,893.32"
+            transform="translate(-1141.98 -753.23)"
+            fill="#fff"
+          />
         </svg>
       );
-    case 'FiveElementsLabs':
+    case "FiveElementsLabs":
       return (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -351,7 +368,7 @@ function CustomCompanyIcons({ company }: CustomCompanyIconsProps) {
         </svg>
       );
     default:
-      return <Fastfood />;
+      return <PlanFreeIcon />;
   }
 }
 

@@ -1,48 +1,45 @@
+'use client';
+
+import { useEffect } from 'react';
 import NProgress from 'nprogress';
-import { useEffect, useState } from 'react';
-// routes
-import { usePathname } from 'src/routes/hooks';
-//
 import StyledProgressBar from './styles';
 
-// ----------------------------------------------------------------------
+type PushStateInput = [data: any, unused: string, url?: string | URL | null | undefined];
 
 export default function ProgressBar() {
-  const pathname = usePathname();
-
-  const [mounted, setMounted] = useState(false);
-
-  const [visible, setVisible] = useState(false);
-
   useEffect(() => {
-    setMounted(true);
-  }, []);
+    NProgress.configure({ showSpinner: false });
 
-  useEffect(() => {
-    if (!visible) {
-      NProgress.start();
-      setVisible(true);
-    }
-
-    if (visible) {
-      NProgress.done();
-      setVisible(false);
-    }
-
-    if (!visible && mounted) {
-      setVisible(false);
-      NProgress.done();
-    }
-
-    return () => {
-      NProgress.done();
+    const handleAnchorClick = (event: MouseEvent) => {
+      const targetUrl = (event.currentTarget as HTMLAnchorElement).href;
+      const currentUrl = window.location.href;
+      if (targetUrl !== currentUrl) {
+        NProgress.start();
+      }
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname, mounted]);
 
-  if (!mounted) {
-    return null;
-  }
+    const handleMutation = () => {
+      const anchorElements: NodeListOf<HTMLAnchorElement> = document.querySelectorAll('a[href]');
+
+      const filteredAnchors = Array.from(anchorElements).filter((element) => {
+        const href = element.getAttribute('href');
+        return href && href.startsWith('/');
+      });
+
+      filteredAnchors.forEach((anchor) => anchor.addEventListener('click', handleAnchorClick));
+    };
+
+    const mutationObserver = new MutationObserver(handleMutation);
+
+    mutationObserver.observe(document, { childList: true, subtree: true });
+
+    window.history.pushState = new Proxy(window.history.pushState, {
+      apply: (target, thisArg, argArray: PushStateInput) => {
+        NProgress.done();
+        return target.apply(thisArg, argArray);
+      },
+    });
+  });
 
   return <StyledProgressBar />;
 }

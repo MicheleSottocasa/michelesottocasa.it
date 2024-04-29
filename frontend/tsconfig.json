@@ -10,8 +10,9 @@
     "strict": true,
     "noEmit": true,
     "allowJs": true,
+    "jsx": "preserve",
     "module": "esnext",
-    "jsx": "react-jsx",
+    "incremental": true,
     "skipLibCheck": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
@@ -24,13 +25,19 @@
     "useUnknownInCatchVariables": false,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
   },
-  "exclude": [
-    "node_modules"
-  ],
   "include": [
+    "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/**/*"
+    ".next/types/**/*.ts",
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }
