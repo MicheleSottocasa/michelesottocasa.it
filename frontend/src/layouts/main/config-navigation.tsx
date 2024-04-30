@@ -20,8 +20,8 @@ export const navConfig = [
     title: "Projects",
     path: pathsMine.projects,
   },
-  {
-    title: "Blog",
-    path: pathsMine.blog,
-  },
+  // {
+  //   title: "Blog",
+  //   path: pathsMine.blog,
+  // },
 ];
