@@ -1,5 +1,5 @@
 import { isSet } from "lodash";
-import { useRouter } from "next/dist/client/components/navigation";
+import { useRouter } from "next/router";
 
 type ReturnType = boolean;
 
@@ -24,8 +24,8 @@ export function useActiveLink(
 
     const currentPath = window.location.pathname + (hash || "");
 
-    const normalActive = path ? !!router.pathname.startsWith(path) : false;
-    const deepActive = path ? !!currentPath.startsWith(path) : false;
+    const normalActive = path ? router.pathname.startsWith(path) : false;
+    const deepActive = path ? currentPath.startsWith(path) : false;
 
     return deep ? deepActive : normalActive;
   }
