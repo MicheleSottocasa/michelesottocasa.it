@@ -5,7 +5,7 @@ import Box, { BoxProps } from '@mui/material/Box';
 
 // ----------------------------------------------------------------------
 
-function CheckoutIllustration({ ...other }: BoxProps) {
+function CheckOutIllustration({ ...other }: BoxProps) {
   const theme = useTheme();
 
   const PRIMARY_LIGHT = theme.palette.primary.light;
@@ -66,4 +66,4 @@ function CheckoutIllustration({ ...other }: BoxProps) {
   );
 }
 
-export default memo(CheckoutIllustration);
+export default memo(CheckOutIllustration);

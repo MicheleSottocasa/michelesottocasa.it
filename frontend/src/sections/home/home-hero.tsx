@@ -1,84 +1,87 @@
-import { m, useScroll } from 'framer-motion';
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { m, useScroll } from "framer-motion";
+import { useEffect, useRef, useState, useCallback } from "react";
 // @mui
-import { styled, alpha } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
+import { styled, alpha, useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Unstable_Grid2";
+import Typography from "@mui/material/Typography";
 // routes
-import { pathsMine } from 'src/routes/paths';
+import { pathsMine } from "src/routes/paths";
 // hooks
-import { useResponsive } from 'src/hooks/use-responsive';
-// theme
-import { bgGradient, bgBlur } from 'src/theme/css';
+import { useResponsive } from "src/hooks/use-responsive";
+import { bgGradient, bgBlur } from "src/theme/css";
 // layouts
-import { HEADER } from 'src/layouts/config-layout';
+import { HEADER } from "src/layouts/config-layout";
 // components
-import Iconify from 'src/components/iconify';
-import { RouterLink } from 'src/routes/components';
-import { MotionContainer, varFade } from 'src/components/animate';
+import Iconify from "src/components/iconify";
+import { RouterLink } from "src/routes/components";
+import { MotionContainer, varFade } from "src/components/animate";
 // Typing Animation
-import { TypeAnimation } from 'react-type-animation';
+import { TypeAnimation } from "react-type-animation";
 
 // ----------------------------------------------------------------------
 
-const StyledRoot = styled('div')(({ theme }) => ({
+const StyledRoot = styled("div")(({ theme }) => ({
   ...bgGradient({
-    color: alpha(theme.palette.background.default, theme.palette.mode === 'light' ? 0.7 : 0.74),
-    imgUrl: '/assets/background/home-background.jpg',
+    color: alpha(
+      theme.palette.background.default,
+      theme.palette.mode === "light" ? 0.7 : 0.74
+    ),
+    imgUrl: "/assets/background/home-background.jpg",
   }),
-  width: '100%',
-  height: '100vh',
-  position: 'relative',
-  [theme.breakpoints.up('md')]: {
+  width: "100%",
+  height: "100vh",
+  position: "relative",
+  [theme.breakpoints.up("md")]: {
     top: 0,
     left: 0,
-    position: 'fixed',
+    position: "fixed",
   },
 }));
 
-const StyledWrapper = styled('div')(({ theme }) => ({
-  height: '100%',
-  overflow: 'hidden',
-  position: 'relative',
-  [theme.breakpoints.up('md')]: {
+const StyledWrapper = styled("div")(({ theme }) => ({
+  height: "100%",
+  overflow: "hidden",
+  position: "relative",
+  [theme.breakpoints.up("md")]: {
     marginTop: HEADER.H_DESKTOP_OFFSET,
   },
 }));
 
-const StyledEllipseTop = styled('div')(({ theme }) => ({
+const StyledEllipseTop = styled("div")(({ theme }) => ({
   top: -80,
   width: 480,
   right: -80,
   height: 480,
-  borderRadius: '50%',
-  position: 'absolute',
-  filter: 'blur(100px)',
-  WebkitFilter: 'blur(100px)',
+  borderRadius: "50%",
+  position: "absolute",
+  filter: "blur(100px)",
+  WebkitFilter: "blur(100px)",
   backgroundColor: alpha(theme.palette.primary.darker, 0.12),
 }));
 
-const StyledEllipseBottom = styled('div')(({ theme }) => ({
+const StyledEllipseBottom = styled("div")(({ theme }) => ({
   height: 400,
   bottom: -200,
-  left: '10%',
-  right: '10%',
-  borderRadius: '50%',
-  position: 'absolute',
-  filter: 'blur(100px)',
-  WebkitFilter: 'blur(100px)',
+  left: "10%",
+  right: "10%",
+  borderRadius: "50%",
+  position: "absolute",
+  filter: "blur(100px)",
+  WebkitFilter: "blur(100px)",
   backgroundColor: alpha(theme.palette.primary.darker, 0.12),
 }));
 
 type StyledPolygonProps = {
   opacity?: number;
-  anchor?: 'left' | 'right';
+  anchor?: "left" | "right";
 };
 
-const StyledPolygon = styled('div')<StyledPolygonProps>(
-  ({ opacity = 1, anchor = 'left', theme }) => ({
+const StyledPolygon = styled("div")<StyledPolygonProps>(
+  ({ opacity = 1, anchor = "left", theme }) => ({
     ...bgBlur({
       opacity,
       color: theme.palette.background.default,
@@ -86,20 +89,20 @@ const StyledPolygon = styled('div')<StyledPolygonProps>(
     zIndex: 9,
     bottom: 0,
     height: 80,
-    width: '50%',
-    position: 'absolute',
-    clipPath: 'polygon(0% 0%, 100% 100%, 0% 100%)',
-    ...(anchor === 'left' && {
+    width: "50%",
+    position: "absolute",
+    clipPath: "polygon(0% 0%, 100% 100%, 0% 100%)",
+    ...(anchor === "left" && {
       left: 0,
-      ...(theme.direction === 'rtl' && {
-        transform: 'scale(-1, 1)',
+      ...(theme.direction === "rtl" && {
+        transform: "scale(-1, 1)",
       }),
     }),
-    ...(anchor === 'right' && {
+    ...(anchor === "right" && {
       right: 0,
-      transform: 'scaleX(-1)',
-      ...(theme.direction === 'rtl' && {
-        transform: 'scaleX(1)',
+      transform: "scaleX(-1)",
+      ...(theme.direction === "rtl" && {
+        transform: "scaleX(1)",
       }),
     }),
   })
@@ -116,13 +119,17 @@ function calculate_age(dob: Date) {
 // ----------------------------------------------------------------------
 
 export default function HomeHero() {
-  const mdUp = useResponsive('up', 'md');
+  const mdUp = useResponsive("up", "md");
+
+  const theme = useTheme();
 
   const heroRef = useRef<HTMLDivElement | null>(null);
 
   const { scrollY } = useScroll();
 
   const [percent, setPercent] = useState(0);
+
+  const isLight = theme.palette.mode === "light";
 
   const getScroll = useCallback(() => {
     let heroHeight = 0;
@@ -131,7 +138,7 @@ export default function HomeHero() {
       heroHeight = heroRef.current.offsetHeight;
     }
 
-    scrollY.on('change', (scrollHeight) => {
+    scrollY.on("change", (scrollHeight) => {
       const scrollPercent = (scrollHeight * 100) / heroHeight;
 
       setPercent(Math.floor(scrollPercent));
@@ -141,6 +148,13 @@ export default function HomeHero() {
   useEffect(() => {
     getScroll();
   }, [getScroll]);
+
+  const transition = {
+    repeatType: "loop",
+    ease: "linear",
+    duration: 60 * 4,
+    repeat: Infinity,
+  } as const;
 
   const opacity = 1 - percent / 100;
 
@@ -154,8 +168,8 @@ export default function HomeHero() {
       justifyContent="center"
       sx={{
         height: 1,
-        mx: 'auto',
-        maxWidth: '700px',
+        mx: "auto",
+        maxWidth: "700px",
         opacity: opacity > 0 ? opacity : 0,
         mt: {
           md: `-${HEADER.H_DESKTOP + percent * 2.5}px`,
@@ -166,7 +180,7 @@ export default function HomeHero() {
         <Typography
           variant="h2"
           sx={{
-            textAlign: 'left',
+            textAlign: "left",
           }}
         >
           Welcome!
@@ -178,7 +192,7 @@ export default function HomeHero() {
           sequence={[
             "I'm Michele Sottocasa",
             2000,
-            `I'm a ${calculate_age(new Date('2004-06-05'))} years old guy`,
+            `I'm a ${calculate_age(new Date("2004-06-05"))} years old guy`,
             2000,
             "I'm a Junior Developer",
             2000,
@@ -221,7 +235,11 @@ export default function HomeHero() {
     <>
       <StyledPolygon />
       <StyledPolygon anchor="right" opacity={0.48} />
-      <StyledPolygon anchor="right" opacity={0.48} sx={{ height: 48, zIndex: 10 }} />
+      <StyledPolygon
+        anchor="right"
+        opacity={0.48}
+        sx={{ height: 48, zIndex: 10 }}
+      />
       <StyledPolygon anchor="right" sx={{ zIndex: 11, height: 24 }} />
     </>
   );
@@ -254,7 +272,7 @@ export default function HomeHero() {
 
       {mdUp && renderPolygons}
 
-      <Box sx={{ height: { md: '100vh' } }} />
+      <Box sx={{ height: { md: "100vh" } }} />
     </>
   );
 }

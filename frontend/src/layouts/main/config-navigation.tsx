@@ -1,33 +1,27 @@
 // routes
-import { pathsMine, adminPaths, paths } from 'src/routes/paths';
+import { pathsMine } from "src/routes/paths";
 
 // ----------------------------------------------------------------------
 
 export const navConfig = [
   {
-    title: 'Home',
+    title: "Home",
     path: pathsMine.home,
   },
   {
-    title: 'About me',
+    title: "About me",
     path: pathsMine.aboutMe,
   },
   {
-    title: 'Background',
+    title: "Background",
     path: pathsMine.background,
   },
   {
-    title: 'Projects',
+    title: "Projects",
     path: pathsMine.projects,
   },
-];
-export const navConfigAdmin = [
-  {
-    title: 'Admin',
-    path: adminPaths.root,
-  },
-  {
-    title: 'Login to admin',
-    path: adminPaths.login,
-  },
+  // {
+  //   title: "Blog",
+  //   path: pathsMine.blog,
+  // },
 ];

@@ -73,7 +73,7 @@ const WORKS = [
     type: 'Part-time',
   },
   {
-    company: 'FiveElementsLabs',
+    company: 'FiveElements Labs',
     position: 'Frontend Web3 Developer',
     start: 'Jan 2023',
     end: 'Now',
@@ -181,36 +181,14 @@ export default function HomeMyBackground() {
       </Stack>
 
       <Box>
-        <Timeline position="alternate">
-          {WORKS.map((card, index) => (
+        <Timeline>
+          {WORKS.map((card) => (
             <m.div variants={varFade().inUp} key={card.company}>
               <TimelineItem>
+                {/*LEFT SECTION*/}
                 <TimelineOppositeContent sx={{ m: 'auto 0' }} align="right" variant="body2">
-                  <Box
-                    color="text.secondary"
-                    sx={{
-                      ...(index % 2 === 0 && {
-                        display: 'none',
-                      }),
-                    }}
-                  >
-                    <Typography>
-                      {card.start} {card.start !== card.end ? `- ${card.end}` : ''}
-                    </Typography>
-                    <Typography>
-                      {distanceBetweenTwoDate(
-                        card.start,
-                        card.current === true ? new Date() : card.end
-                      )}
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      ...(index % 2 === 1 && {
-                        display: 'none',
-                      }),
-                    }}
-                  >
+                  {/*Job description */}
+                  <Box>
                     <Typography variant="h6" component="span">
                       {card.position}
                     </Typography>
@@ -227,39 +205,19 @@ export default function HomeMyBackground() {
                   </TimelineDot>
                   <TimelineConnector />
                 </TimelineSeparator>
-                <TimelineContent sx={{ py: '12px', px: 2 }}>
-                  <Box
-                    color="text.secondary"
-                    sx={{
-                      ...(index % 2 === 1 && {
-                        display: 'none',
-                      }),
-                    }}
-                  >
+                {/*RIGHT SECTION*/}
+                <TimelineContent sx={{ py: '12px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+                  {/*Times*/}
+                  <Box>
                     <Typography>
                       {card.start} {card.start !== card.end ? `- ${card.end}` : ''}
                     </Typography>
                     <Typography>
                       {distanceBetweenTwoDate(
                         card.start,
-                        card.current === true ? new Date() : card.end
+                        card.current ? new Date() : card.end
                       )}
                     </Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      ...(index % 2 === 0 && {
-                        display: 'none',
-                      }),
-                    }}
-                  >
-                    <Typography variant="h6" component="span">
-                      {card.position}
-                    </Typography>
-                    <Typography>
-                      {card.company} - {card.type}
-                    </Typography>
-                    <Typography color="text.secondary">{card.location}</Typography>
                   </Box>
                 </TimelineContent>
               </TimelineItem>

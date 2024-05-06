@@ -6,7 +6,7 @@ export type SettingsValueProps = {
   themeDirection: 'rtl' | 'ltr';
   themeContrast: 'default' | 'bold';
   themeLayout: 'vertical' | 'horizontal' | 'mini';
-  themeColorPresets: 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red' | 'MS';
+  themeColorPresets: 'default' | 'cyan' | 'purple' | 'blue' | 'orange' | 'red';
 };
 
 export type SettingsContextProps = SettingsValueProps & {

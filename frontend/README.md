@@ -1,13 +1,4 @@
-## NODE.JS
-
-- Node 16.x || 18.x
-
-## USING YARN (Recommend)
+## Launch on your machine
 
 - yarn install
-- yarn start
-
-## USING NPM
-
-- npm i OR npm i --legacy-peer-deps
-- npm start
+- yarn dev
