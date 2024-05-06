@@ -1,7 +1,7 @@
 {
   "name": "@sottocasa-michele/portfolio",
   "author": "Sottocasa Michele",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Sottocasa Michele portfolio",
   "private": true,
   "scripts": {
