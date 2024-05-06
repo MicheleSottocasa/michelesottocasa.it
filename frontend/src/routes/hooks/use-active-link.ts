@@ -1,5 +1,5 @@
 import { isSet } from "lodash";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 type ReturnType = boolean;
 
@@ -9,7 +9,7 @@ export function useActiveLink(
   activeSection?: string,
   item = { path: "/#hero", title: "Home" }
 ): ReturnType {
-  const router = useRouter();
+  const pathname = usePathname();
 
   let itemPath = item.path;
   if (activeSection === "") activeSection = "hero";
@@ -24,7 +24,7 @@ export function useActiveLink(
 
     const currentPath = window.location.pathname + (hash || "");
 
-    const normalActive = path ? router.pathname.startsWith(path) : false;
+    const normalActive = path ? pathname.startsWith(path) : false;
     const deepActive = path ? currentPath.startsWith(path) : false;
 
     return deep ? deepActive : normalActive;
