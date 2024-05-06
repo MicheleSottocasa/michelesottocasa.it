@@ -44,7 +44,7 @@ export default function HomeView() {
   return (
     <MainLayout>
       <ScrollProgress scrollYProgress={scrollYProgress} />
-      <div id="hero1" />
+      <div id="hero" />
       <HomeHero />
 
       <Box

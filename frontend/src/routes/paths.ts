@@ -12,7 +12,7 @@ export const paths = {
 };
 
 export const pathsMine = {
-  home: "/",
+  home: "/#hero",
   aboutMe: "/#about-me",
   background: "/#background",
   projects: "/#projects",

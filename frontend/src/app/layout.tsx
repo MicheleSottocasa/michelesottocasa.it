@@ -22,7 +22,7 @@ import { SettingsProvider, SettingsDrawer } from "src/components/settings";
 
 export const metadata = {
   title: "Sottocasa Michele portfolio",
-  description: "The starting point for your next project with React",
+  description: "Sottocasa Michele's personal portfolio",
   keywords:
     "web developer, sottocasa michele, portfolio, web3 developer, frontend developer, developer",
   themeColor: "#000000",
