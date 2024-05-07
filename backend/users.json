@@ -1,0 +1,16 @@
+{
+  "9570807e-b891-40dd-9b2b-d9d7575d833d": {
+    "id":"9570807e-b891-40dd-9b2b-d9d7575d833d",
+    "username":"bossi",
+    "email":"a@b.c",
+    "password":"$2a$10$8y2KOH.q/DxiIhKgu2amweBLB0UhAyqHlfnCrbF28LaywmKof2C1C",
+    "roles": ["guest"]
+  },
+  "3b4095f7-a278-4f19-a126-158fc58e4c9e":{
+    "id":"3b4095f7-a278-4f19-a126-158fc58e4c9e",
+    "username":"sottocasam",
+    "email":"contact@michelesottocasa.it",
+    "password":"$2a$10$bTbSfllWyi/VMQDNkl2rTekyNVyiQdBtphzDdK6ClldQlvUBsUWhO",
+    "roles": ["admin"]
+  }
+}
