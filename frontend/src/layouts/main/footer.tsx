@@ -9,7 +9,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 // routes
-import { pathsMine } from "src/routes/paths";
+import { portfolioPaths } from "src/routes/paths";
 import { RouterLink } from "src/routes/components";
 // components
 import Logo from "src/components/logo";
@@ -21,9 +21,9 @@ const LINKS = [
   {
     headline: "About",
     children: [
-      { name: "About me", href: pathsMine.aboutMe },
-      { name: "My background", href: pathsMine.background },
-      { name: "Projects", href: pathsMine.projects },
+      { name: "About me", href: portfolioPaths.aboutMe },
+      { name: "My background", href: portfolioPaths.background },
+      { name: "Projects", href: portfolioPaths.projects },
     ],
   },
   {

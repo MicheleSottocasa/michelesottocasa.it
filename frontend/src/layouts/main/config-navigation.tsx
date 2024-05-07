@@ -1,24 +1,24 @@
 // routes
-import { pathsMine } from "src/routes/paths";
+import { portfolioPaths } from "src/routes/paths";
 
 // ----------------------------------------------------------------------
 
 export const navConfig = [
   {
     title: "Home",
-    path: pathsMine.home,
+    path: portfolioPaths.home,
   },
   {
     title: "About me",
-    path: pathsMine.aboutMe,
+    path: portfolioPaths.aboutMe,
   },
   {
     title: "Background",
-    path: pathsMine.background,
+    path: portfolioPaths.background,
   },
   {
     title: "Projects",
-    path: pathsMine.projects,
+    path: portfolioPaths.projects,
   },
   // {
   //   title: "Blog",

@@ -9,7 +9,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Unstable_Grid2";
 import Typography from "@mui/material/Typography";
 // routes
-import { pathsMine } from "src/routes/paths";
+import { portfolioPaths } from "src/routes/paths";
 // hooks
 import { useResponsive } from "src/hooks/use-responsive";
 import { bgGradient, bgBlur } from "src/theme/css";
@@ -218,7 +218,7 @@ export default function HomeHero() {
         <Stack alignItems="right" spacing={2}>
           <Button
             component={RouterLink}
-            href={pathsMine.aboutMe}
+            href={portfolioPaths.aboutMe}
             color="primary"
             size="large"
             variant="contained"
