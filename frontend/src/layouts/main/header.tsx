@@ -13,12 +13,13 @@ import { useResponsive } from "src/hooks/use-responsive";
 import { bgBlur } from "src/theme/css";
 // components
 import Logo from "src/components/logo";
+import NavMobile from "./nav/mobile";
+import NavDesktop from "./nav/desktop";
 //
 import React, { useState, useEffect } from "react";
 import { HEADER } from "../config-layout";
-import { portfolioMenu } from "./config-navigation";
-import NavMobile from "./nav/mobile";
-import NavDesktop from "./nav/desktop";
+import { portfolioMenu, adminMenu } from "./config-navigation";
+import * as Types from "src/types";
 //
 import { HeaderShadow } from "../_common";
 
@@ -26,7 +27,6 @@ import { HeaderShadow } from "../_common";
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState<string>("");
-  const [currentPath, setCurrentPath] = useState<string>(location.pathname);
   const [menu, setMenu] = useState<Types.MenuEntry>(portfolioMenu);
 
   const theme = useTheme();
@@ -55,6 +55,15 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path.includes("admin")) {
+      setMenu(adminMenu);
+    } else {
+      setMenu(portfolioMenu);
+    }
+  }, [location.pathname]);
 
   return (
     <AppBar>
@@ -96,7 +105,7 @@ export default function Header() {
           {mdUp && (
             <NavDesktop
               offsetTop={offsetTop}
-              data={portfolioMenu}
+              data={menu}
               activeSection={activeSection}
             />
           )}
@@ -105,7 +114,7 @@ export default function Header() {
             alignItems="center"
             direction={{ xs: "row", md: "row-reverse" }}
           >
-            {!mdUp && <NavMobile offsetTop={offsetTop} data={portfolioMenu} />}
+            {!mdUp && <NavMobile offsetTop={offsetTop} data={menu} />}
           </Stack>
         </Container>
       </Toolbar>
