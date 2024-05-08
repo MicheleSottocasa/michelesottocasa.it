@@ -25,7 +25,9 @@ import { HeaderShadow } from "../_common";
 // ----------------------------------------------------------------------
 
 export default function Header() {
-  const [activeSection, setActiveSection] = useState<string>(""); // Stato per l'elemento visibile
+  const [activeSection, setActiveSection] = useState<string>("");
+  const [currentPath, setCurrentPath] = useState<string>(location.pathname);
+  const [menu, setMenu] = useState<Types.MenuEntry>(portfolioMenu);
 
   const theme = useTheme();
 
@@ -34,20 +36,18 @@ export default function Header() {
   const offsetTop = useOffSetTop(HEADER.H_DESKTOP);
 
   const handleScroll = () => {
-    const sections = document.querySelectorAll(".section"); // Aggiungi la classe 'section' alle sezioni del tuo contenuto
+    const sections = document.querySelectorAll(".section");
     let currentSection = "";
 
     sections.forEach((section) => {
       const rect = section.getBoundingClientRect();
       if (rect.top <= 0 && rect.bottom >= 0) {
-        currentSection = section.id; // Imposta l'ID dell'elemento visibile
+        currentSection = section.id;
       }
     });
 
     setActiveSection(currentSection);
   };
-
-  // console.log('Active section: ', activeSection);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
