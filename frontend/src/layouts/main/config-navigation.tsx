@@ -1,27 +1,34 @@
 // routes
-import { portfolioPaths } from "src/routes/paths";
+import { paths } from "src/routes/paths";
 
 // ----------------------------------------------------------------------
 
-export const navConfig = [
+export const portfolioMenu = [
   {
     title: "Home",
-    path: portfolioPaths.home,
+    path: paths.portfolio.home,
   },
   {
     title: "About me",
-    path: portfolioPaths.aboutMe,
+    path: paths.portfolio.aboutMe,
   },
   {
     title: "Background",
-    path: portfolioPaths.background,
+    path: paths.portfolio.background,
   },
   {
     title: "Projects",
-    path: portfolioPaths.projects,
+    path: paths.portfolio.projects,
   },
   // {
   //   title: "Blog",
-  //   path: pathsMine.blog,
+  //   path: paths.portfolio.blog,
   // },
+];
+
+export const adminMenu = [
+  {
+    title: "Dashboard",
+    path: paths.admin.dashboard,
+  },
 ];
