@@ -1,10 +1,11 @@
+"use client";
 // @mui
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 // routes
-import { usePathname } from 'src/routes/hooks';
+import { usePathname } from "src/routes/hooks";
 //
-import Footer from './footer';
-import Header from './header';
+import Footer from "./footer";
+import Header from "./header";
 
 // ----------------------------------------------------------------------
 
@@ -15,10 +16,10 @@ type Props = {
 export default function MainLayout({ children }: Props) {
   const pathname = usePathname();
 
-  const isHome = pathname === '/';
+  const isHome = pathname === "/";
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: 1 }}>
+    <Box sx={{ display: "flex", flexDirection: "column", height: 1 }}>
       <Header />
 
       <Box

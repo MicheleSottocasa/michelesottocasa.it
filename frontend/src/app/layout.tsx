@@ -16,7 +16,9 @@ import { primaryFont } from "src/theme/typography";
 // components
 import ProgressBar from "src/components/progress-bar";
 import { MotionLazy } from "src/components/animate/motion-lazy";
-import { SettingsProvider, SettingsDrawer } from "src/components/settings";
+import { SettingsProvider } from "src/components/settings";
+import { Toaster } from "react-hot-toast";
+import MainLayout from "../layouts/main";
 
 // ----------------------------------------------------------------------
 
@@ -81,9 +83,9 @@ export default function RootLayout({ children }: Props) {
           >
             <ThemeProvider>
               <MotionLazy>
-                <SettingsDrawer />
+                <Toaster position={"bottom-right"} />
                 <ProgressBar />
-                {children}
+                <MainLayout>{children}</MainLayout>
               </MotionLazy>
             </ThemeProvider>
           </SettingsProvider>

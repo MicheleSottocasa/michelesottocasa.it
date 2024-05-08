@@ -8,7 +8,6 @@ import HomeHero from "../home-hero";
 import HomeMyBackground from "../home-my-background";
 import HomeAboutMe from "../home-about-me";
 import HomeProjects from "../home-projects";
-import MainLayout from "src/layouts/main";
 
 export default function HomeView() {
   useEffect(() => {
@@ -42,7 +41,7 @@ export default function HomeView() {
   const { scrollYProgress } = useScroll();
 
   return (
-    <MainLayout>
+    <>
       <ScrollProgress scrollYProgress={scrollYProgress} />
       <div id="hero" />
       <HomeHero />
@@ -60,6 +59,6 @@ export default function HomeView() {
         <HomeMyBackground />
         <HomeProjects />
       </Box>
-    </MainLayout>
+    </>
   );
 }

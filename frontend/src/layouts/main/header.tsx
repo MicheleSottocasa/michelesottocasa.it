@@ -1,41 +1,41 @@
 // @mui
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
-import Badge, { badgeClasses } from '@mui/material/Badge';
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Container from "@mui/material/Container";
+import Badge, { badgeClasses } from "@mui/material/Badge";
 // hooks
-import { useOffSetTop } from 'src/hooks/use-off-set-top';
-import { useResponsive } from 'src/hooks/use-responsive';
+import { useOffSetTop } from "src/hooks/use-off-set-top";
+import { useResponsive } from "src/hooks/use-responsive";
 // theme
-import { bgBlur } from 'src/theme/css';
+import { bgBlur } from "src/theme/css";
 // components
-import Logo from 'src/components/logo';
+import Logo from "src/components/logo";
 //
-import React, { useState, useEffect } from 'react';
-import { HEADER } from '../config-layout';
-import { navConfig } from './config-navigation';
-import NavMobile from './nav/mobile';
-import NavDesktop from './nav/desktop';
+import React, { useState, useEffect } from "react";
+import { HEADER } from "../config-layout";
+import { portfolioMenu } from "./config-navigation";
+import NavMobile from "./nav/mobile";
+import NavDesktop from "./nav/desktop";
 //
-import { HeaderShadow } from '../_common';
+import { HeaderShadow } from "../_common";
 
 // ----------------------------------------------------------------------
 
 export default function Header() {
-  const [activeSection, setActiveSection] = useState<string>(''); // Stato per l'elemento visibile
+  const [activeSection, setActiveSection] = useState<string>(""); // Stato per l'elemento visibile
 
   const theme = useTheme();
 
-  const mdUp = useResponsive('up', 'md');
+  const mdUp = useResponsive("up", "md");
 
   const offsetTop = useOffSetTop(HEADER.H_DESKTOP);
 
   const handleScroll = () => {
-    const sections = document.querySelectorAll('.section'); // Aggiungi la classe 'section' alle sezioni del tuo contenuto
-    let currentSection = '';
+    const sections = document.querySelectorAll(".section"); // Aggiungi la classe 'section' alle sezioni del tuo contenuto
+    let currentSection = "";
 
     sections.forEach((section) => {
       const rect = section.getBoundingClientRect();
@@ -50,9 +50,9 @@ export default function Header() {
   // console.log('Active section: ', activeSection);
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -65,7 +65,7 @@ export default function Header() {
             xs: HEADER.H_MOBILE,
             md: HEADER.H_DESKTOP,
           },
-          transition: theme.transitions.create(['height'], {
+          transition: theme.transitions.create(["height"], {
             easing: theme.transitions.easing.easeInOut,
             duration: theme.transitions.duration.shorter,
           }),
@@ -79,7 +79,7 @@ export default function Header() {
           }),
         }}
       >
-        <Container sx={{ height: 1, display: 'flex', alignItems: 'center' }}>
+        <Container sx={{ height: 1, display: "flex", alignItems: "center" }}>
           <Badge
             sx={{
               [`& .${badgeClasses.badge}`]: {
@@ -94,21 +94,18 @@ export default function Header() {
           <Box sx={{ flexGrow: 1 }} />
 
           {mdUp && (
-            <NavDesktop offsetTop={offsetTop} data={navConfig} activeSection={activeSection} />
+            <NavDesktop
+              offsetTop={offsetTop}
+              data={portfolioMenu}
+              activeSection={activeSection}
+            />
           )}
 
-          <Stack alignItems="center" direction={{ xs: 'row', md: 'row-reverse' }}>
-            {/* 
-            {mdUp && <LoginButton />}
-      
-            <SettingsButton
-              sx={{
-                ml: { xs: 1, md: 0 },
-                mr: { md: 2 },
-              }}
-            /> */}
-
-            {!mdUp && <NavMobile offsetTop={offsetTop} data={navConfig} />}
+          <Stack
+            alignItems="center"
+            direction={{ xs: "row", md: "row-reverse" }}
+          >
+            {!mdUp && <NavMobile offsetTop={offsetTop} data={portfolioMenu} />}
           </Stack>
         </Container>
       </Toolbar>
