@@ -3,11 +3,11 @@
   "version": "0.1",
   "description": "Michele Sottocasa's portfolio&blog API",
   "main": "src/app.ts",
-    "scripts": {
-        "start": "ts-node-dev src/app.ts",
-        "build": "tsc",
-        "dev": "ts-node-dev src/app.ts"
-    },
+  "scripts": {
+    "start": "ts-node-dev src/app.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev src/app.ts"
+  },
   "repository": "https://github.com/MicheleSottocasa/michelesottocasa.it",
   "author": "Sottocasa Michele",
   "license": "MIT",
