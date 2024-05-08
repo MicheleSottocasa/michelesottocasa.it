@@ -19,6 +19,7 @@ import NavDesktop from "./nav/desktop";
 import React, { useState, useEffect } from "react";
 import { HEADER } from "../config-layout";
 import { portfolioMenu, adminMenu } from "./config-navigation";
+import { usePathname } from "src/routes/hooks";
 import * as Types from "src/types";
 //
 import { HeaderShadow } from "../_common";
@@ -57,13 +58,13 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const path = window.location.pathname;
+    const path = usePathname();
     if (path.includes("admin")) {
       setMenu(adminMenu);
     } else {
       setMenu(portfolioMenu);
     }
-  }, [location.pathname]);
+  }, [usePathname()]);
 
   return (
     <AppBar>
