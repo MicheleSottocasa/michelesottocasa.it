@@ -48,7 +48,7 @@ export const create = async (userData: UnitUser): Promise<UnitUser | null> => {
         username : userData.username,
         email : userData.email,
         password: hashedPassword,
-        role: userData.role,
+        roles: userData.roles,
     };
 
     users[id] = user;

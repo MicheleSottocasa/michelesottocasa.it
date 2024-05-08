@@ -2,7 +2,7 @@ export interface User {
     username : string,
     email : string,
     password : string,
-    role : string
+    roles : [role: string],
 }
 
 export interface UnitUser extends User {

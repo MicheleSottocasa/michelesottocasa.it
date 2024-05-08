@@ -76,7 +76,11 @@ userRouter.post("/login", async (req : Request, res : Response) => {
             return res.status(StatusCodes.BAD_REQUEST).json({error : `Incorrect Password!`})
         }
 
-        return res.status(StatusCodes.OK).json({user})
+        return res.status(StatusCodes.OK).json({
+            id: user.id,
+            email: user.email,
+            roles: user.roles,
+        })
 
     } catch (error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error})
