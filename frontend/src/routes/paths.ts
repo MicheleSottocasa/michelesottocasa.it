@@ -7,7 +7,7 @@ export const portfolioPaths = {
 };
 
 const adminPaths = {
-  dashboard: "/dashboard",
+  dashboard: "/admin/dashboard",
   login: "/auth/login",
 };
 
