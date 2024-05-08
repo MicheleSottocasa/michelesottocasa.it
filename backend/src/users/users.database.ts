@@ -1,7 +1,7 @@
 import { User, UnitUser, Users } from "./users.interface";
-import bcrypt from "bcryptjs"
-import {v4 as random} from "uuid"
-import fs from "fs"
+import bcrypt from "bcryptjs";
+import {v4 as random} from "uuid";
+import fs from 'fs';
 
 let users: Users = loadUsers()
 
@@ -10,7 +10,7 @@ function loadUsers () : Users {
         const data = fs.readFileSync("./users.json", "utf-8")
         return JSON.parse(data)
     } catch (error) {
-        console.log(`Error ${error}`)
+        console.error(`Error ${error}`)
         return {}
     }
 }
@@ -18,9 +18,9 @@ function loadUsers () : Users {
 function saveUsers () {
     try {
         fs.writeFileSync("./users.json", JSON.stringify(users), "utf-8")
-        console.log(`User saved successfully!`)
+        console.info(`User saved successfully!`)
     } catch (error) {
-        console.log(`Error : ${error}`)
+        console.error(`Error : ${error}`)
     }
 }
 
@@ -108,9 +108,8 @@ export const update = async (id : string, updateValues : User) : Promise<UnitUse
 
     if(updateValues.password) {
         const salt = await bcrypt.genSalt(10)
-        const newPass = await bcrypt.hash(updateValues.password, salt)
 
-        updateValues.password = newPass
+        updateValues.password = await bcrypt.hash(updateValues.password, salt)
     }
 
     users[id] = {
