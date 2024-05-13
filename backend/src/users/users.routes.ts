@@ -1,16 +1,19 @@
 import express, {Request, Response} from "express"
-import { UnitUser, User } from "./users.interface"
+import { UnitUser } from "./users.interface"
 import {StatusCodes} from "http-status-codes"
 import * as database from "./users.database"
 
 export const userRouter = express.Router()
+const INCORRECT_LOGIN = "User or password not correct!";
+const MAIL_ALREADY_REGISTERED = "This email has already been registered..";
+const MISSING_PARAMETERS = "Please provide all the required parameters..";
 
 userRouter.get("/users", async (req : Request, res : Response) => {
     try {
         const allUsers : UnitUser[] = await database.findAll()
 
         if (!allUsers) {
-            return res.status(StatusCodes.NOT_FOUND).json({msg : `No users at this time..`})
+            return res.status(StatusCodes.NOT_FOUND).json({msg : INCORRECT_LOGIN})
         }
 
         return res.status(StatusCodes.OK).json({total_user : allUsers.length, allUsers})
@@ -24,7 +27,7 @@ userRouter.get("/user/:id", async (req : Request, res : Response) => {
         const user : UnitUser = await database.findOne(req.params.id)
 
         if (!user) {
-            return res.status(StatusCodes.NOT_FOUND).json({error : `User not found!`})
+            return res.status(StatusCodes.NOT_FOUND).json({error : INCORRECT_LOGIN})
         }
 
         return res.status(StatusCodes.OK).json({user})
@@ -38,13 +41,13 @@ userRouter.post("/register", async (req : Request, res : Response) => {
         const { username, email, password } = req.body
 
         if (!username || !email || !password) {
-            return res.status(StatusCodes.BAD_REQUEST).json({error : `Please provide all the required parameters..`})
+            return res.status(StatusCodes.BAD_REQUEST).json({error : MISSING_PARAMETERS})
         }
 
         const user = await database.findByEmail(email)
 
         if (user) {
-            return res.status(StatusCodes.BAD_REQUEST).json({error : `This email has already been registered..`})
+            return res.status(StatusCodes.BAD_REQUEST).json({error : MAIL_ALREADY_REGISTERED})
         }
 
         const newUser = await database.create(req.body)
@@ -61,19 +64,19 @@ userRouter.post("/login", async (req : Request, res : Response) => {
         const {username, password} = req.body
 
         if (!username || !password) {
-            return res.status(StatusCodes.BAD_REQUEST).json({error : "Please provide all the required parameters.."})
+            return res.status(StatusCodes.BAD_REQUEST).json({error : MISSING_PARAMETERS})
         }
 
         const user = await database.findByUsername(username)
 
         if (!user) {
-            return res.status(StatusCodes.NOT_FOUND).json({error : "No user exists with the email provided.."})
+            return res.status(StatusCodes.NOT_FOUND).json({error : INCORRECT_LOGIN})
         }
 
         const comparePassword = await database.comparePassword(username, password)
 
         if (!comparePassword) {
-            return res.status(StatusCodes.BAD_REQUEST).json({error : `Incorrect Password!`})
+            return res.status(StatusCodes.BAD_REQUEST).json({error : INCORRECT_LOGIN})
         }
 
         return res.status(StatusCodes.OK).json({

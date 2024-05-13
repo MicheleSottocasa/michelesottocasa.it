@@ -19,9 +19,11 @@ const PORT = parseInt(process.env.PORT as string, 10)
 
 const app = express()
 
-app.use(express.json())
-app.use(express.urlencoded({extended : true}))
 app.use(cors())
+app.use(express.json({
+    type: ['application/json', 'text/plain']
+}))
+app.use(express.urlencoded({extended : true}))
 app.use(helmet())
 app.use((req, res, next) => {
     log.info(
