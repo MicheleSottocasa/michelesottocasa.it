@@ -7,7 +7,6 @@ import { listItemButtonClasses } from '@mui/material/ListItemButton';
 import { useBoolean } from 'src/hooks/use-boolean';
 // components
 import { NavSectionVertical } from 'src/components/nav-section';
-import { usePathname } from 'src/routes/hooks';
 //
 import { NavItemProps } from '../types';
 import NavItem from './nav-item';
@@ -16,16 +15,14 @@ import NavItem from './nav-item';
 
 type NavListProps = {
   item: NavItemProps;
+  nav: ReturnType<typeof useBoolean>;
 };
 
-export default function NavList({ item }: NavListProps) {
-  const pathname = usePathname();
+export default function NavList({ item, nav }: NavListProps) {
 
   const { path, children } = item;
 
   const externalLink = path.includes('http');
-
-  const nav = useBoolean();
 
   return (
     <>

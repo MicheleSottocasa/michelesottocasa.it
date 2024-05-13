@@ -26,7 +26,6 @@ export default function NavMobile({ offsetTop, data }: NavProps) {
     if (nav.value) {
       nav.onFalse();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   return (
@@ -58,7 +57,7 @@ export default function NavMobile({ offsetTop, data }: NavProps) {
 
           <List component="nav" disablePadding>
             {data.map((link) => (
-              <NavList key={link.title} item={link} />
+              <NavList key={link.title} item={link} nav={nav} />
             ))}
           </List>
         </Scrollbar>
