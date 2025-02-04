@@ -75,9 +75,9 @@ const WORKS = [
   {
     company: 'FiveElements Labs',
     position: 'Frontend Web3 Developer',
-    start: 'Jan 2023',
-    end: 'Now',
-    current: true,
+    start: 'Jan 2024',
+    end: 'Dec 2024',
+    current: false,
     location: 'Milan, Lombardy, Italy',
     locationType: 'Ibrid',
     type: 'Part-time',
@@ -236,10 +236,10 @@ function distanceBetweenTwoDate(firstDate: Date | string, secondDate: Date | str
   let yearsDiff = secondDate.getFullYear() - firstDate.getFullYear();
   let monthsDiff = secondDate.getMonth() - firstDate.getMonth() + 1;
   if (monthsDiff < 0) {
-    console.log('here');
     yearsDiff -= 1;
     monthsDiff += 12;
   }
+  console.log(firstDate, " - ", monthsDiff, " - ", secondDate);
 
   if (secondDate.getFullYear() === new Date().getFullYear()) yearsDiff -= 1;
 
